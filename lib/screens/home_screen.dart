@@ -1,7 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:propilla_app/home_screen_widgets/houses.dart';
 
 import '../colors/colors.dart';
+import '../home_screen_widgets/bottom_buttons.dart';
+import '../home_screen_widgets/categories.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,32 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 RichText(
                   text: TextSpan(
                       text: 'I want to ',
-                        style: GoogleFonts.lato(
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w400,
-                          color: shadowColor,
-                          fontSize: 25,
-                        ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: ' Buy',
-                            style: GoogleFonts.lato(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              color: shadowColor,
-                              fontSize: 25,
-                            ),
-
-                        )
-                      ]
-                  ),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-                RichText(
-                  text: TextSpan(
-                      text: 'Apartment in ',
                       style: GoogleFonts.lato(
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.w400,
@@ -63,6 +41,39 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
+                          text: ' Buy',
+                          style: GoogleFonts.lato(
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w600,
+                            color: shadowColor,
+                            fontSize: 25,
+                          ),
+                        )
+                      ]),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                RichText(
+                  text: TextSpan(
+                      text: 'Apartment',
+                      style: GoogleFonts.lato(
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w600,
+                        color: shadowColor,
+                        fontSize: 25,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: ' in ',
+                          style: GoogleFonts.lato(
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w400,
+                            color: shadowColor,
+                            fontSize: 25,
+                          ),
+                        ),
+                        TextSpan(
                           text: 'Pakistan',
                           style: GoogleFonts.lato(
                             fontStyle: FontStyle.normal,
@@ -70,10 +81,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: shadowColor,
                             fontSize: 25,
                           ),
-
                         )
-                      ]
-                  ),
+                      ]),
                 ),
               ],
             ),
@@ -91,12 +100,21 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 30,
             )),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
-          Text("Home Screen")
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Categories(),
+              Houses(),
+
+            ],
+          ),
+          BottomButtons(),
         ],
+
       ),
     );
   }

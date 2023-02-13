@@ -24,3 +24,15 @@ const sky = Color(0xFFABDEE6);
 const blue = Color(0xFF509BE4);
 
 const listColors = [green, purple, yellow, orange, sky, secondary, red, blue, pink, yellow,];
+
+
+
+//colors used in this app
+
+const Color white = Colors.white;
+const Color black = Colors.black;
+const Color darkBlue = Color.fromRGBO(19, 26, 44, 1.0);
+
+//default app padding
+
+const double appPadding = 30.0;

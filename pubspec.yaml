@@ -78,6 +78,9 @@ dependencies:
   image_picker: ^0.8.6
   cached_network_image: ^3.2.2
   material_design_icons_flutter: ^6.0.7096
+ # Coursel Image Slider
+  carousel_slider: ^4.2.1
+  # carousel_pro: ^1.0.0
 
 
 dev_dependencies:
@@ -107,6 +110,7 @@ flutter:
     - Assets/images/real_estate_logo.jpg
     - Assets/images/house.jpg
     - Assets/icons/
+    - Assets/images/image/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
