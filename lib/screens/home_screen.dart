@@ -1,11 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:propilla_app/home_screen_widgets/houses.dart';
 
 import '../colors/colors.dart';
 import '../home_screen_widgets/bottom_buttons.dart';
 import '../home_screen_widgets/categories.dart';
+import '../home_screen_widgets/categories_button_testing.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,8 +18,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         bottom: PreferredSize(
@@ -107,7 +112,53 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Categories(),
+              //Categories(),
+
+              /// Category Custom Widget Testing
+
+          Padding(
+          padding: const EdgeInsets.only(
+            left: appPadding,
+            top: appPadding / 2,
+            bottom: appPadding,
+          ),
+          child: Container(
+            height: size.height * 0.05,
+            child: ListView.builder(
+              physics: BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: 1,
+              itemBuilder: (context, index) {
+                return Row(
+                  children: [
+                    CategoryButtonTesting(title: '15000', onTap: (){
+                      print("<15000");
+                      Get.to(HomeScreen());
+                    },),
+                    CategoryButtonTesting(title: 'For Sale', onTap: (){
+                      print("For Sale");
+                      Get.to(HomeScreen());
+                    },),
+                    CategoryButtonTesting(title: '3-4 bed room', onTap: (){
+                      print("3-4 bed rooms");
+                      Get.to(HomeScreen());
+                    },),
+                    CategoryButtonTesting(title: 'Garages', onTap: (){
+                      print("Garages");
+                      Get.to(HomeScreen());
+                    },),
+                    CategoryButtonTesting(title: 'Modular kitchen', onTap: (){
+                      print("Modular Kitchen");
+                      Get.to(HomeScreen());
+                    },),
+                  ],
+                );
+              },
+            ),
+          ),
+    ),
+
+              /// Custom Widget Testing
               Houses(),
 
             ],
