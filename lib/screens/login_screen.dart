@@ -131,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                               icons: _.passicons,
                               isPasswordType: _.passwordType = true,
                               controllerpass:_.passwordController,
-                              validator: _.passwordValidator,
+                              validator: _.validatePassword,
                             ),
                           ),
                           Align(
@@ -213,17 +213,32 @@ class LoginScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500),
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  _.signWithGoogle().then((UserCredential value){
-                                    Get.to(const HomeScreen());
-                                  });
-                                },
-                                child: Container(
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 25),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    _.signWithGoogle().then((UserCredential value){
+                                      Get.to(const HomeScreen());
+                                    });
+                                  },
+                                  child: Container(
 
+                                    height: 63,
+                                    width: 92,
+                                    decoration: const BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(20))),
+                                    child: Center(
+                                      child: Image.asset(
+                                        "Assets/icons/Gmail.png",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
                                   height: 63,
                                   width: 92,
                                   decoration: const BoxDecoration(
@@ -231,26 +246,14 @@ class LoginScreen extends StatelessWidget {
                                           BorderRadius.all(Radius.circular(20))),
                                   child: Center(
                                     child: Image.asset(
-                                      "Assets/icons/Gmail.png",
+                                      "Assets/icons/Facebook.png",
+                                      height: 62,
+                                      width: 92,
                                     ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                height: 63,
-                                width: 92,
-                                decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
-                                child: Center(
-                                  child: Image.asset(
-                                    "Assets/icons/Facebook.png",
-                                    height: 62,
-                                    width: 92,
-                                  ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),

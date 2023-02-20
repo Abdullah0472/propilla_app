@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:password_field_validator/password_field_validator.dart';
 import 'package:propilla_app/controller/loginScreenController.dart';
 import 'package:propilla_app/screens/home_screen.dart';
 import 'package:propilla_app/screens/login_screen.dart';
@@ -126,9 +127,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           icons: _.passicons,
                           isPasswordType: _.passwordType = true,
                           controllerpass: _.passwordController,
-                          validator: _.passwordValidator,
+                          validator: _.validatePassword,
                         ),
                       ),
+
+
+
                       Center(
                         child: signUpsignUpButton(context, _.titleSignup,
                             () async {
@@ -190,6 +194,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 25,),
                     ],
                   ),
                 ),

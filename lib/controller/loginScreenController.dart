@@ -41,40 +41,37 @@ class LoginScreenController extends GetxController {
 // Validator of Email
   String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {
-      return "Please enter email in TextFormField";
+      return "Please enter your Email";
     }
     if (!GetUtils.isEmail(value)) {
-      return "Enter proper email address";
+      return "Enter Proper email address";
     }
     return null;
   }
 
-  // Validator of Password
-  //  String? passwordValidator(String? value) {
-  //    if (value == null || value.isEmpty) {
-  //      return "Enter the password in TextFormField";
-  //    }
-  //    if ((!RegExp(
-  //        r'^(?=.*?[A-Z]{2})(?=.*?[a-z]{5})(?=.*?[0-9]{3})(?=.*?[!@#\$&*~]{2}).{}$')
-  //        .hasMatch(value))) {
-  //      return 'Please Enter valid password';
-  //    }
-  //
-  //    return null;
-  //  }
-  String? passwordValidator(String? value) {
-    RegExp regex =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+// Validator of Password
+  String? validatePassword(String? value) {
     if (value!.isEmpty) {
-      return 'Please enter password';
-    } else {
-      if (!regex.hasMatch(value)) {
-        return 'Enter valid password';
-      } else {
-        return null;
-      }
+      return 'Password is required';
     }
+    if (value.length < 8) {
+      return 'Password must be at least 8 characters long';
+    }
+    if (!value.contains(RegExp(r'[A-Z]'))) {
+      return 'Password must contain an uppercase letter';
+    }
+    if (!value.contains(RegExp(r'[a-z]'))) {
+      return 'Password must contain a lowercase letter';
+    }
+    if (!value.contains(RegExp(r'[0-9]'))) {
+      return 'Password must contain a number';
+    }
+    if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+      return 'Password must contain a special character';
+    }
+    return null;
   }
+
 
   String? userValidator(String? value) {
     if (!value!.contains(RegExp(r'^[a-zA-Z0-9 ]+$'))) {
@@ -82,11 +79,6 @@ class LoginScreenController extends GetxController {
     }
   }
 
-//   String? validateMobile(String? value) {
-// // Pakistan Mobile number are of 10 digit only
-//     if (value!.length != 11)
-//       return 'Mobile Number must be of 11 digit';
-//   }
 
   onLoginPressed() {
     Get.snackbar("Login Status", "Successfully Logged in",
@@ -146,6 +138,7 @@ class LoginScreenController extends GetxController {
           "name": userName,
           "email": email,
           "uid": currentUser.uid,
+          "phone": phoneNumber,
         };
 
         ///

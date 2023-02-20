@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:propilla_app/controller/loginScreenController.dart';
 import '../colors/colors.dart';
 
@@ -18,7 +19,7 @@ TextFormField reusableTextField(
     enableSuggestions: !isPasswordType,
     autocorrect: !isPasswordType,
     cursorColor: Colors.white,
-    style: TextStyle(color: shadowColor, fontSize: 17),
+    style: const TextStyle(color: shadowColor, fontSize: 17),
     minLines: 1,
     decoration: InputDecoration(
       prefixIcon: Icon(
@@ -26,7 +27,7 @@ TextFormField reusableTextField(
         color: mainColor,
       ),
       labelText: text,
-      labelStyle: TextStyle(color: shadowColor, fontSize: 15),
+      labelStyle: const TextStyle(color: shadowColor, fontSize: 15),
       filled: true,
       floatingLabelBehavior: FloatingLabelBehavior.never,
       fillColor: Colors.white.withOpacity(0.3),
@@ -78,8 +79,6 @@ Container signUpsignUpButton(
   );
 }
 
-
-
 /// Heading Text over text form field
 
 Text textHeading(
@@ -98,8 +97,8 @@ Text textHeading(
 
 /// Intl Phone Field Widegt
 IntlPhoneField phoneField(
-    TextEditingController phoneController,
-    ) {
+  TextEditingController phoneController,
+) {
   return IntlPhoneField(
     controller: phoneController,
     initialCountryCode: "Pakistan",
@@ -120,5 +119,84 @@ IntlPhoneField phoneField(
     onCountryChanged: (country) {
       print('Country changed to: ' + country.name);
     },
+  );
+}
+
+/// Heading Text over text-form-field in data entry in upload post screen
+
+Text textDescription(
+  String text,
+) {
+  return Text(
+    text,
+    style: GoogleFonts.lato(
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.w500,
+      color: shadowColor,
+      fontSize: 18,
+    ),
+  );
+}
+
+/// ---------------- TextInputField for Upload Screen Data ----------------------///
+
+Container textInputField(
+  String hinttext,
+  double height,
+  double width,
+  bool numericType,
+  String? Function(String?)? Validator,
+  TextEditingController mycontroller,
+  int maxLine,
+) {
+  return Container(
+    height: height,
+    width: width,
+    decoration: BoxDecoration(boxShadow: [
+      BoxShadow(
+          color: Colors.grey.withOpacity(0.1), spreadRadius: 5, blurRadius: 10)
+    ]),
+    child: Center(
+      child: TextFormField(
+        controller: mycontroller,
+        validator: Validator,
+        decoration: InputDecoration(
+            hintText: hinttext,
+            hintStyle: TextStyle(
+              fontSize: 17,
+              color: Colors.grey.shade400,
+            ),
+            fillColor: Colors.white,
+            filled: true,
+            focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(25)),
+              borderSide: BorderSide(color: Color(0xffE6E6E6)),
+            ),
+            enabledBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(25)),
+              borderSide: BorderSide(color: Color(0xffE6E6E6)),
+            )),
+        keyboardType: numericType ? TextInputType.phone : TextInputType.text,
+        maxLines: maxLine,
+      ),
+    ),
+  );
+}
+
+GestureDetector ImageConatiner(
+    VoidCallback onTapp,
+    ){
+  return GestureDetector(
+    onTap: onTapp,
+    child: Container(
+      height: 100,
+      width: 100,
+      decoration: BoxDecoration(
+         color: red,
+          borderRadius: BorderRadius.circular(20),
+
+      ),
+      child: Center(child: Icon(MdiIcons.camera,size: 35,color: white,)),
+    ),
   );
 }
