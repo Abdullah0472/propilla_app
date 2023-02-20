@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:propilla_app/screens/signup_screen.dart';
 
 import '../colors/colors.dart';
 
-class TermConditionScreen extends StatefulWidget {
-  const TermConditionScreen({Key? key}) : super(key: key);
+class PrivacyPolicyScreen extends StatefulWidget {
+  const PrivacyPolicyScreen({Key? key}) : super(key: key);
 
   @override
-  State<TermConditionScreen> createState() => _TermConditionScreenState();
+  State<PrivacyPolicyScreen> createState() => _PrivacyPolicyScreenState();
 }
 
-class _TermConditionScreenState extends State<TermConditionScreen> {
+class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,16 +20,16 @@ class _TermConditionScreenState extends State<TermConditionScreen> {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(35),
           child: Padding(
-            padding: const EdgeInsets.only(right: 130),
+            padding: const EdgeInsets.only(right:180 ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Text(
-                  "Terms & Conditions ",
+                  "Privacy Policy",
                   style: GoogleFonts.lato(
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w800,
@@ -46,7 +45,7 @@ class _TermConditionScreenState extends State<TermConditionScreen> {
         elevation: 0,
         leading: IconButton(
             onPressed: () {
-            Get.back();
+              Get.back();
             },
             icon: const Icon(
               Icons.arrow_back,
@@ -62,7 +61,7 @@ class _TermConditionScreenState extends State<TermConditionScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Company's Terms of Use",
+                "Company's Privacy of Use",
                 style: GoogleFonts.lato(
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w500,
@@ -90,7 +89,7 @@ class _TermConditionScreenState extends State<TermConditionScreen> {
                     child: RichText(
                       text: const TextSpan(
                         text:
-                            "Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery. ",
+                        "Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery. ",
                         style: TextStyle(fontSize: 18, color: darker),
                         children: <TextSpan>[],
                       ),
@@ -102,7 +101,7 @@ class _TermConditionScreenState extends State<TermConditionScreen> {
                 height: 20,
               ),
               Text(
-                "Terms & Conditions",
+                "Privacy Policies ",
                 style: GoogleFonts.lato(
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w500,
@@ -117,7 +116,7 @@ class _TermConditionScreenState extends State<TermConditionScreen> {
                     child: RichText(
                       text: const TextSpan(
                         text:
-                            "Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery.Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery. Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery. Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery. Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery. Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery.  ",
+                        "Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery.Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery. Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery. Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery. Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery. Tribevibe is a global community of travellers, wanderers, and curious people that thrive under the premise that the world is inherently good. It provides a platform for meaningful connections and experiences. Simply put, it's a community for untourists—for those that travelling is a way of life and a path to self-discovery.  ",
                         style: TextStyle(fontSize: 18, color: darker),
                         children: <TextSpan>[],
                       ),

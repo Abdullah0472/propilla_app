@@ -148,7 +148,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             _.phoneController.clear();
                             _.userController.clear();
                             _.emailController.clear();
-                            Get.to(() => const HomeScreen());
+                            Get.to(() => const LoginScreen());
                           }
                         }),
                       ),

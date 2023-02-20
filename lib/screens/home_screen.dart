@@ -57,18 +57,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
       return Scaffold(
         appBar: AppBar(
-
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(90),
+            preferredSize: const Size.fromHeight(70),
             child: Padding(
               padding: const EdgeInsets.only(right: 100,left: 30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  // const SizedBox(
+                  //   height: 5,
+                  // ),
                   RichText(
                     text: TextSpan(
                         text: '${detail.firstName} want to ',
@@ -87,14 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: shadowColor,
                               fontSize: 25,
                             ),
-                          )
-                        ]),
-                  ),
-                  const SizedBox(
-                    height: 7,
-                  ),
-                  RichText(
-                    text: TextSpan(
+                          ),
+                    TextSpan(
                         text: 'in ',
                         style: GoogleFonts.lato(
                           fontStyle: FontStyle.normal,
@@ -102,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: shadowColor,
                           fontSize: 25,
                         ),
-                        children: <TextSpan>[
+                    ),
                           TextSpan(
                             text: 'Pakistan',
                             style: GoogleFonts.lato(
@@ -111,9 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: shadowColor,
                               fontSize: 25,
                             ),
-                          )
-                        ]
-                    ),
+                          ),
+                        ]),
                   ),
                 ],
               ),
@@ -122,22 +114,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
           backgroundColor: appBgColor,
           elevation: 0,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-                size: 30,
-              )),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                },
-                icon: const Icon(MdiIcons.logout,color: Colors.black,size: 30,)),
-          ],
+          // leading: IconButton(
+          //     onPressed: () {
+          //       Navigator.pop(context);
+          //     },
+          //     icon: const Icon(
+          //       Icons.arrow_back,
+          //       color: Colors.black,
+          //       size: 35,
+          //     )),
+
         ),
         body: Stack(
           alignment: Alignment.bottomCenter,
@@ -156,10 +142,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     top: appPadding / 2,
                     bottom: appPadding,
                   ),
-                  child: Container(
+                  child: SizedBox(
                     height: size.height * 0.05,
                     child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemCount: 1,
                       itemBuilder: (context, index) {
@@ -167,23 +153,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             CategoryButton(title: '15000', onTap: (){
                               print("<15000");
-                              Get.to(HomeScreen());
+                              Get.to(const HomeScreen());
                             },),
                             CategoryButton(title: 'For Sale', onTap: (){
                               print("For Sale");
-                              Get.to(HomeScreen());
+                              Get.to(const HomeScreen());
                             },),
                             CategoryButton(title: '3-4 bed room', onTap: (){
                               print("3-4 bed rooms");
-                              Get.to(HomeScreen());
+                              Get.to(const HomeScreen());
                             },),
                             CategoryButton(title: 'Garages', onTap: (){
                               print("Garages");
-                              Get.to(HomeScreen());
+                              Get.to(const HomeScreen());
                             },),
                             CategoryButton(title: 'Modular kitchen', onTap: (){
                               print("Modular Kitchen");
-                              Get.to(HomeScreen());
+                              Get.to(const HomeScreen());
                             },),
                           ],
                         );

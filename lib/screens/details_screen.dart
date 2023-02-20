@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sms/flutter_sms.dart';
-import 'package:propilla_app/sample_data/data.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-
 import '../detail_screen_widget/bottom_buttons.dart';
-import '../detail_screen_widget/carousel_images.dart';
 import '../detail_screen_widget/carousel_testing.dart';
 import '../detail_screen_widget/custom_app_bar.dart';
 import '../detail_screen_widget/house_details.dart';

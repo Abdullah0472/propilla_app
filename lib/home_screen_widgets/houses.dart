@@ -13,9 +13,7 @@ class Houses extends StatefulWidget {
 class _HousesState extends State<Houses> {
   Widget _buildHouse(BuildContext context, int index) {
     Size size = MediaQuery.of(context).size;
-
-    HouseModel house = houseList[index];
-
+   HouseModel house = houseList[index];
     return GestureDetector(
       onTap: () {
         Navigator.push(

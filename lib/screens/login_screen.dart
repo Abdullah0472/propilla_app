@@ -14,6 +14,7 @@ import '../widgets/password_textfield.dart';
 import '../widgets/reuseable_widegts.dart';
 import 'forgetPassScreen.dart';
 import 'home_screen.dart';
+import 'navBar_Screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -159,7 +160,7 @@ class LoginScreen extends StatelessWidget {
                                     _.passwordController.clear();
                                     _.onLoginPressed();
                                     if(status){
-                                      Get.to(const HomeScreen());
+                                      Get.to(() => BottomNavigationBarScreen());
 
                                     }
                                     else {
@@ -221,7 +222,7 @@ class LoginScreen extends StatelessWidget {
                                 InkWell(
                                   onTap: () {
                                     _.signWithGoogle().then((UserCredential value){
-                                      Get.to(const HomeScreen());
+                                      Get.to(() => BottomNavigationBarScreen());
                                     });
                                   },
                                   child: Container(

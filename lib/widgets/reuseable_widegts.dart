@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -182,7 +184,7 @@ Container textInputField(
     ),
   );
 }
-
+ /// This Custom Widget is using to upload image in upload post screen
 GestureDetector ImageConatiner(
     VoidCallback onTapp,
     ){
@@ -196,7 +198,92 @@ GestureDetector ImageConatiner(
           borderRadius: BorderRadius.circular(20),
 
       ),
-      child: Center(child: Icon(MdiIcons.camera,size: 35,color: white,)),
+      child: const Center(child: Icon(MdiIcons.camera,size: 35,color: white,)),
     ),
   );
 }
+
+/// User Personal Setting Screen Widget
+
+GestureDetector ListTileInfo(
+    VoidCallback clicky,
+    Icon iconDisplay,
+    String title,
+    String subtitle,
+    ){
+  return GestureDetector(
+    onTap: clicky,
+    child: Padding(
+      padding: const EdgeInsets.only(left: 20,top: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+        iconDisplay,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Text(title, style: GoogleFonts.lato(
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+                color: shadowColor,
+                fontSize: 22,
+              ),),
+              SizedBox(height: 7,),
+
+              Text(subtitle,style: GoogleFonts.lato(
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w400,
+                color: inActiveColor,
+                fontSize: 19,
+              ),)
+            ],),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+
+/// Button for Support Screen
+
+GestureDetector contactUsButton(
+    VoidCallback clickme,
+    String heading,
+    Icon icon,
+    ){
+  return GestureDetector(
+    onTap: clickme,
+    child: Center(
+      child: Container(
+        height: 50,
+        width: 300,
+        decoration: BoxDecoration(
+          color: textBoxColor,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(width: 1,color: darker,)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(heading, style: GoogleFonts.lato(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w700,
+              color: shadowColor,
+              fontSize: 20,
+            ),),
+           icon,
+
+          ],
+        ),
+      ),
+    )
+  );
+}
+
+
