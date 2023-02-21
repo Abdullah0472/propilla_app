@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import 'package:get/get_core/src/get_main.dart';
+
 import '../chat/rooms.dart';
 import '../colors/colors.dart';
 import 'home_screen.dart';
@@ -23,13 +27,14 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
 
   final List _widgetOptions = [
     const HomeScreen(),
+
     /// POP-UP Display which contain Highlighted Features of Uploading the Post
     CupertinoPopupSurface(
       child: Padding(
         padding: const EdgeInsets.only(top: 350),
         child: Center(
           child: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 color: CupertinoColors.white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
@@ -60,11 +65,11 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                   padding: const EdgeInsets.only(left: 15),
                   child: Row(
                     children: [
-                      const Icon(
+                      Icon(
                         MdiIcons.uploadOutline,
                         size: 35,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 15,
                       ),
                       Column(
@@ -80,7 +85,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                               fontSize: 20,
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 5,
                             width: 10,
                           ),
@@ -104,11 +109,11 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                   padding: const EdgeInsets.only(left: 15),
                   child: Row(
                     children: [
-                      const Icon(
+                      Icon(
                         MdiIcons.signatureFreehand,
                         size: 35,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 15,
                       ),
                       Column(
@@ -124,7 +129,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                               fontSize: 20,
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 5,
                             width: 10,
                           ),
@@ -148,11 +153,11 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                   padding: const EdgeInsets.only(left: 15),
                   child: Row(
                     children: [
-                      const Icon(
+                      Icon(
                         MdiIcons.registeredTrademark,
                         size: 35,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 15,
                       ),
                       Column(
@@ -168,7 +173,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                               fontSize: 20,
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 5,
                             width: 10,
                           ),
@@ -198,6 +203,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         Get.to(() => const UploadPostScreen());
+
+                        Get.to(() => UploadPostScreen());
                       },
                       style: ButtonStyle(
                         backgroundColor:
@@ -207,14 +214,15 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                           }
                           return primary;
                         }),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                         ),
                       ),
-                      child: const Text(
+                      child: Text(
                         "Upload Now",
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: appBgColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -223,6 +231,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                     ),
                   ),
                 ),
+
                 /// ------------------- UPLOAD BUTTON ------------------///
               ],
             ),
@@ -230,6 +239,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
         ),
       ),
     ),
+
     /// ---------------------------------------- //
     const RoomsPage(),
     const UserSettingScreen(),

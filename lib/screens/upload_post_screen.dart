@@ -4,7 +4,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
 import '../colors/colors.dart';
 import '../controller/postScreenController.dart';
 import '../widgets/reuseable_widegts.dart';
@@ -24,6 +23,7 @@ class UploadPostScreen extends StatelessWidget {
           key: formkeyUpload,
           child: Scaffold(
             /// AppBar of Upload Post Screen
+
             appBar: AppBar(
               bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(10),
@@ -61,13 +61,17 @@ class UploadPostScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       textDescription("Property Title"),
+
                       /// Property Title
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: textInputField("Enter the Property Title", 50,
                             365, false, _.propertyTitleValidator, _.typeTextController,1),
                       ),
+
                       /// Information of Bath and Bedroom
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Row(
@@ -95,7 +99,9 @@ class UploadPostScreen extends StatelessWidget {
                             ],),
                         ],),
                       ),
+
                       /// Information of Area and Price
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Row(
@@ -124,14 +130,21 @@ class UploadPostScreen extends StatelessWidget {
                           ],),
                       ),
 
+
                       textDescription("About Property"),
                       /// Property Information/Description in 10 Lines Maximum
+
+                      textDescription("About Property"),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: textInputField("Enter Property Info", 100,
                             365, false, _.propertyTitleValidator, _.infoTextController,10),
                       ),
+
                       /// Divider of Location
+
+                      /// Divider
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         child: Row(
@@ -154,14 +167,18 @@ class UploadPostScreen extends StatelessWidget {
                         ),
                       ),
                       textDescription("Enter Property Location"),
+
                       // Need Working on this for future
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: textInputField("Enter Property Info", 50,
                             365, false, _.propertyTitleValidator, _.infoTextController,1),
                       ),
                       /// Utilities Section
+
                       // Heading
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Row(
@@ -182,7 +199,9 @@ class UploadPostScreen extends StatelessWidget {
                           ),),
                         ],),
                       ),
+
                       // Hospital
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Row(
@@ -202,7 +221,9 @@ class UploadPostScreen extends StatelessWidget {
                             textInputField("min", 50, 120, false,_.propertyTitleValidator, _.hospitalTextController, 1)
                         ],),
                       ),
+
                       // School
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Row(
@@ -222,7 +243,8 @@ class UploadPostScreen extends StatelessWidget {
                             textInputField("min", 50, 120, false,_.propertyTitleValidator, _.schoolTextController, 1)
                           ],),
                       ),
-                      // Airport
+                    // Airport
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Row(
@@ -242,7 +264,9 @@ class UploadPostScreen extends StatelessWidget {
                             textInputField("min", 50, 120, false,_.propertyTitleValidator, _.airportTextController, 1)
                           ],),
                       ),
+
                       // Market
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Row(
@@ -262,7 +286,9 @@ class UploadPostScreen extends StatelessWidget {
                             textInputField("min", 50, 120, false,_.propertyTitleValidator, _.marketTextController, 1)
                           ],),
                       ),
+
                       // Masjid
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Row(
@@ -282,7 +308,9 @@ class UploadPostScreen extends StatelessWidget {
                             textInputField("min", 50, 120, false,_.propertyTitleValidator, _.masjidTextController, 1)
                           ],),
                       ),
+
                       // Park
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         child: Row(
@@ -302,7 +330,9 @@ class UploadPostScreen extends StatelessWidget {
                             textInputField("min", 50, 120, false,_.propertyTitleValidator, _.parkTextController, 1)
                           ],),
                       ),
+
                       /// Divider for Photos
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         child: Row(
@@ -324,7 +354,9 @@ class UploadPostScreen extends StatelessWidget {
                             ]
                         ),
                       ),
+
                       /// Photos Box to insert
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Container(
@@ -364,7 +396,9 @@ class UploadPostScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10,),
+
                       /// Upload Button which is Non-Custom all code is inside this widget
+
                       Center(
                         child: Container(
                           width: 300,

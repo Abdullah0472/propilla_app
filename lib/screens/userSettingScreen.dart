@@ -17,6 +17,7 @@ import '../widgets/reuseable_widegts.dart';
 import '../widgets/toggle_button.dart';
 import 'faqScreen.dart';
 
+
 class UserSettingScreen extends StatefulWidget {
   const UserSettingScreen({Key? key}) : super(key: key);
 
@@ -56,6 +57,7 @@ class _UserSettingScreenState extends State<UserSettingScreen> {
 
             return Scaffold(
               body: SafeArea(
+
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,6 +168,8 @@ class _UserSettingScreenState extends State<UserSettingScreen> {
                     ),
                   ],
                 ),
+
+
               ),
             );
           }

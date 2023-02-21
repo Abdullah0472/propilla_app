@@ -1,11 +1,8 @@
-import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:propilla_app/controller/loginScreenController.dart';
 import '../colors/colors.dart';
 
 TextFormField reusableTextField(
