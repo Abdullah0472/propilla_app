@@ -12,6 +12,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../chat/rooms.dart';
 import '../colors/colors.dart';
 import '../models/user_profile_model.dart';
+import '../testing_screens/upload_property_screen.dart';
 import 'home_screen.dart';
 import 'upload_post_screen.dart';
 import 'userSettingScreen.dart';
@@ -223,7 +224,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                             BoxDecoration(borderRadius: BorderRadius.circular(90)),
                         child: ElevatedButton(
                           onPressed: () {
-                            Get.to(() => UploadPostScreen(userdetail: detail ,));
+                            Get.to(() => UploadPropertyScreen());
+                           // Get.to(() => UploadPostScreen(userdetail: detail ,));
                           },
                           style: ButtonStyle(
                             backgroundColor:
