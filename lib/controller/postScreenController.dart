@@ -58,7 +58,7 @@ class CreatePostController extends GetxController {
     final ImagePicker _picker = ImagePicker();
     // Pick an image
     final XFile? image = await _picker.pickImage(
-      source: ImageSource.camera,
+      source: ImageSource.gallery,
     );
     // final XFile? video = await _picker.pickVideo(source: ImageSource.camera);
 
@@ -104,9 +104,22 @@ class CreatePostController extends GetxController {
 
   void addPostToFirestore(
       {
-        required String posttext,
-      required String userimageurl,
-      required String username}) async {
+        required String title,
+        required String bed,
+        required String bath,
+        required String area,
+        required String price,
+        required String info,
+        required String hospital,
+        required String school,
+        required String airport,
+        required String market,
+        required String masjid,
+        required String park,
+      // required String userimageurl,
+      required String username
+      })
+  async {
 
     User? user = FirebaseAuth.instance.currentUser;
     String UniqueName = DateTime.now().microsecondsSinceEpoch.toString();
@@ -141,17 +154,29 @@ class CreatePostController extends GetxController {
 
         Map<String, dynamic> data = {
           "uid": uid,
-          "posttext": posttext,
-          "userImageUrl": userimageurl,
+          "title": title,
+          "bed":bed,
+          "bath":bath,
+          "area": area,
+          "price":price,
+          "info":info,
+          "hospital":hospital,
+          "school":school,
+          "airport":airport,
+          "market":market,
+          "masjid":masjid,
+          "park":park,
+       //  "userImageUrl": userimageurl,
           "datetimepost": nowdatetime,
           "username": username,
-          "postImageUrl": imagePostUrl
+          "postImageUrl": imagePostUrl,
+          "phoneNo": user?.phoneNumber,
         };
 
         postReference
             .add(data)
             .then((value) => print("Successfully add to firestore"))
-            .onError((error, stacktrace) => print("Error $error"));
+            .onError((error, stacktrace) => print("Error is =  $error"));
         // try {
         //   DocumentReference currentPostReference = postReference.doc(uid);
         //   await currentPostReference.update({"postImageUrl": imagePostUrl});
@@ -166,26 +191,28 @@ class CreatePostController extends GetxController {
     }
   }
 
-  Future<void> likespost(String postid, String uid, List likes) async {
-    try {
-      if (likes.contains(uid)) {
-        await postReference.doc(postid).update({
-          // if the likes list contains the user uid, we need to remove it
-          'likes': FieldValue.arrayRemove([uid]),
-          "likecount": FieldValue.increment(-1),
-        });
-      } else {
-        await postReference.doc(postid).update({
-          // else we need to add uid to the likes array
-          'likes': FieldValue.arrayUnion([uid]),
-          "likecount": FieldValue.increment(1),
-        });
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+  /// This Function is for like
+ /// Currently we are not using
 
+  // Future<void> likespost(String postid, String uid, List likes) async {
+  //   try {
+  //     if (likes.contains(uid)) {
+  //       await postReference.doc(postid).update({
+  //         // if the likes list contains the user uid, we need to remove it
+  //         'likes': FieldValue.arrayRemove([uid]),
+  //         "likecount": FieldValue.increment(-1),
+  //       });
+  //     } else {
+  //       await postReference.doc(postid).update({
+  //         // else we need to add uid to the likes array
+  //         'likes': FieldValue.arrayUnion([uid]),
+  //         "likecount": FieldValue.increment(1),
+  //       });
+  //     }
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
 
-
+/// ------------------------------------ ///
 }

@@ -72,7 +72,7 @@ class _HousesState extends State<Houses> {
               Row(
                 children: [
                   Text(
-                    ' PKR ${house.price.toStringAsFixed(2)}',
+                    ' PKR ${house.price}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -108,7 +108,7 @@ class _HousesState extends State<Houses> {
                     ),
                   ),
                   Text(
-                    '${house.sqFeet} sqft',
+                    '${house.area} sqft',
                     style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,

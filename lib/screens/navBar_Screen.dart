@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../chat/rooms.dart';
 import '../colors/colors.dart';
+import '../models/user_profile_model.dart';
 import 'home_screen.dart';
 import 'upload_post_screen.dart';
 import 'userSettingScreen.dart';
@@ -22,6 +25,10 @@ class BottomNavigationBarScreen extends StatefulWidget {
       _BottomNavigationBarScreenState();
 }
 
+        CollectionReference uerRefrence = FirebaseFirestore.instance.collection("users");
+
+        User? user = FirebaseAuth.instance.currentUser;
+
 class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
   int _selectedIndex = 0;
 
@@ -29,215 +36,231 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
     const HomeScreen(),
 
     /// POP-UP Display which contain Highlighted Features of Uploading the Post
-    CupertinoPopupSurface(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 350),
-        child: Center(
-          child: Container(
-            decoration: BoxDecoration(
-                color: CupertinoColors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50))),
-            alignment: Alignment.center,
-            width: 350,
-            height: 400,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /// Heading of a POP-Up
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, bottom: 15),
-                  child: Text(
-                    "Upload Property",
-                    style: GoogleFonts.lato(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w600,
-                      color: shadowColor,
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
+    FutureBuilder<DocumentSnapshot>(
+        future: uerRefrence.doc(user!.uid).get(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasError) {
+            return const Text("Something went wrong");
+          }
 
-                /// First Main Highlighted feature to Upload
-                Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Row(
-                    children: [
-                      Icon(
-                        MdiIcons.uploadOutline,
-                        size: 35,
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Easy Uploading Steps",
-                            style: GoogleFonts.lato(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,
-                              color: shadowColor,
-                              fontSize: 20,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                            width: 10,
-                          ),
-                          Text(
-                            "You can upload property details \n by filling the form.",
-                            style: GoogleFonts.lato(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+          if (snapshot.hasData && !snapshot.data!.exists) {
+            return const Text("Document does not exist");
+          }
+  if (snapshot.connectionState == ConnectionState.done) {
+  ///------------With Model--------------------------///
 
-                /// Second Main Highlighted feature to Upload
-                Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Row(
-                    children: [
-                      Icon(
-                        MdiIcons.signatureFreehand,
-                        size: 35,
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "No Uploading Charges ",
-                            style: GoogleFonts.lato(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,
-                              color: shadowColor,
-                              fontSize: 20,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                            width: 10,
-                          ),
-                          Text(
-                            "The Uploads are free of cost, \n no uploading fee and no specific time.",
-                            style: GoogleFonts.lato(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-
-                /// Third Main Highlighted feature to Upload
-                Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Row(
-                    children: [
-                      Icon(
-                        MdiIcons.registeredTrademark,
-                        size: 35,
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Scam Free Uploads",
-                            style: GoogleFonts.lato(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,
-                              color: shadowColor,
-                              fontSize: 20,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                            width: 10,
-                          ),
-                          Text(
-                            "The post is firstly checked,  after that \n the post is uploaded.",
-                            style: GoogleFonts.lato(
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-
-                /// Upload Button (Moving to Upload Screen)
-                Center(
-                  child: Container(
-                    width: 300,
-                    height: 50,
-                    margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(90)),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.to(() => const UploadPostScreen());
-
-                        Get.to(() => UploadPostScreen());
-                      },
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.resolveWith((states) {
-                          if (states.contains(MaterialState.pressed)) {
-                            return secondary;
-                          }
-                          return primary;
-                        }),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
+     UserProfileModel detail = UserProfileModel.fromDocumentSnapshot(snapshot: snapshot.data!);
+        return CupertinoPopupSurface(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 350),
+            child: Center(
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: CupertinoColors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50))),
+                alignment: Alignment.center,
+                width: 350,
+                height: 400,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    /// Heading of a POP-Up
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, bottom: 15),
                       child: Text(
-                        "Upload Now",
-                        style: const TextStyle(
-                          color: appBgColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                        "Upload Property",
+                        style: GoogleFonts.lato(
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          color: shadowColor,
+                          fontSize: 25,
                         ),
                       ),
                     ),
-                  ),
-                ),
 
-                /// ------------------- UPLOAD BUTTON ------------------///
-              ],
+                    /// First Main Highlighted feature to Upload
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            MdiIcons.uploadOutline,
+                            size: 35,
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Easy Uploading Steps",
+                                style: GoogleFonts.lato(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w400,
+                                  color: shadowColor,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                                width: 10,
+                              ),
+                              Text(
+                                "You can upload property details \n by filling the form.",
+                                style: GoogleFonts.lato(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.grey,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    /// Second Main Highlighted feature to Upload
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            MdiIcons.signatureFreehand,
+                            size: 35,
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "No Uploading Charges ",
+                                style: GoogleFonts.lato(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w400,
+                                  color: shadowColor,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                                width: 10,
+                              ),
+                              Text(
+                                "The Uploads are free of cost, \n no uploading fee and no specific time.",
+                                style: GoogleFonts.lato(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.grey,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    /// Third Main Highlighted feature to Upload
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            MdiIcons.registeredTrademark,
+                            size: 35,
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Scam Free Uploads",
+                                style: GoogleFonts.lato(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w400,
+                                  color: shadowColor,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                                width: 10,
+                              ),
+                              Text(
+                                "The post is firstly checked,  after that \n the post is uploaded.",
+                                style: GoogleFonts.lato(
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.grey,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    /// Upload Button (Moving to Upload Screen)
+                    Center(
+                      child: Container(
+                        width: 300,
+                        height: 50,
+                        margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                        decoration:
+                            BoxDecoration(borderRadius: BorderRadius.circular(90)),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Get.to(() => UploadPostScreen(userdetail: detail ,));
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return secondary;
+                              }
+                              return primary;
+                            }),
+                            shape:
+                                MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                            ),
+                          ),
+                          child: const Text(
+                            "Upload Now",
+                            style: TextStyle(
+                              color: appBgColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    /// ------------------- UPLOAD BUTTON ------------------///
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+  }
+          return Text("Loading");
+      }
     ),
 
     /// ---------------------------------------- //
@@ -300,7 +323,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
               textAlign: TextAlign.center,
             ),
           ],
-        ));
+        )
+    );
   }
 
   /// FUNCTION FOR POPUP MENU JUST LIKE IOS DEVICES (nOT Used in this code)

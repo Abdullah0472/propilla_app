@@ -4,6 +4,8 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../colors/colors.dart';
 import '../screens/myPropertiesScreen.dart';
+import '../testing_screens/myPropertyTestingScreen.dart';
+import 'home_list.dart';
 
 class ToggleButton extends StatefulWidget {
   @override
@@ -89,7 +91,8 @@ class _ToggleButtonState extends State<ToggleButton> {
                     signInColor = selectedColor;
                     loginColor = normalColor;
                   });
-                  Get.to(() => MyPropertyScreen());
+                // Get.to(() => MyPropertyScreen());
+                  Get.to(() => MyPropertyTestingScreen());
                 },
                 child: Align(
                   alignment: const Alignment(1, 0),

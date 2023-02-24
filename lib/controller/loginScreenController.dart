@@ -134,6 +134,7 @@ class LoginScreenController extends GetxController {
       User? currentUser = credential.user;
 
       if (currentUser != null) {
+
         Map<String, dynamic> userProfileData = {
           "name": userName,
           "email": email,

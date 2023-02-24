@@ -35,7 +35,7 @@ class _HouseDetailsState extends State<HouseDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'PKR ${widget.house.price.toStringAsFixed(3)}',
+                      'PKR ${widget.house.price}',
                       style: const TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ class _HouseDetailsState extends State<HouseDetails> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.house.sqFeet.toString(),
+                          widget.house.area.toString(),
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,

@@ -155,7 +155,8 @@ class LoginScreen extends StatelessWidget {
                                   if(formkey.currentState!.validate()){
                                     bool status =   await _.loginUser(
                                         email: _.emailController.text,
-                                        password: _.passwordController.text);
+                                        password: _.passwordController.text
+                                    );
                                     _.emailController.clear();
                                     _.passwordController.clear();
                                     _.onLoginPressed();

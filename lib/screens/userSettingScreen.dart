@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:propilla_app/screens/login_screen.dart';
 import 'package:propilla_app/screens/privacy_policy_screen.dart';
 import 'package:propilla_app/screens/supportScreen.dart';
 import 'package:propilla_app/screens/term&condition_screen.dart';
@@ -99,7 +100,7 @@ class _UserSettingScreenState extends State<UserSettingScreen> {
                                   topRight: Radius.circular(50))),
                           alignment: Alignment.center,
                           width: 350,
-                          height: 620,
+                          height: 580,
                           child: ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               scrollDirection: Axis.vertical,
@@ -154,6 +155,7 @@ class _UserSettingScreenState extends State<UserSettingScreen> {
                                         "Company privacy & policy "),
                                     ListTileInfo(() {
                                       FirebaseAuth.instance.signOut();
+                                      Get.to(()=> const LoginScreen());
                                     },
                                         const Icon(
                                           MdiIcons.power,

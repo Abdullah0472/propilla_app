@@ -114,15 +114,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
           backgroundColor: appBgColor,
           elevation: 0,
-          // leading: IconButton(
-          //     onPressed: () {
-          //       Navigator.pop(context);
-          //     },
-          //     icon: const Icon(
-          //       Icons.arrow_back,
-          //       color: Colors.black,
-          //       size: 35,
-          //     )),
 
         ),
         body: Stack(
