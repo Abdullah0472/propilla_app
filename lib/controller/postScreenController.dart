@@ -25,9 +25,6 @@ class CreatePostController extends GetxController {
   static CollectionReference postReference =
       FirebaseFirestore.instance.collection("post");
 
-  CollectionReference imagepostReference =
-      FirebaseFirestore.instance.collection("postImages");
-
   User? currentuser = FirebaseAuth.instance.currentUser;
 
   File? postImageFile;
@@ -53,51 +50,90 @@ class CreatePostController extends GetxController {
     }
   }
 
+/// Pick Image Code this is my code which is having error
+  // pickPostImage(BuildContext context) async {
+  //   final ImagePicker _picker = ImagePicker();
+  //   // Pick an image
+  //   final XFile? image = await _picker.pickImage(
+  //     source: ImageSource.gallery,
+  //   );
+  //   // final XFile? video = await _picker.pickVideo(source: ImageSource.camera);
+  //
+  //   if (image != null) {
+  //     CroppedFile? croppedFile = await ImageCropper().cropImage(
+  //       sourcePath: image.path,
+  //       aspectRatioPresets: [
+  //         CropAspectRatioPreset.square,
+  //         CropAspectRatioPreset.ratio3x2,
+  //         CropAspectRatioPreset.original,
+  //         CropAspectRatioPreset.ratio4x3,
+  //         CropAspectRatioPreset.ratio16x9
+  //       ],
+  //       uiSettings: [
+  //         AndroidUiSettings(
+  //             toolbarTitle: 'Cropper',
+  //             toolbarColor: Colors.deepOrange,
+  //             toolbarWidgetColor: Colors.white,
+  //             initAspectRatio: CropAspectRatioPreset.original,
+  //             lockAspectRatio: false),
+  //         IOSUiSettings(
+  //           title: 'Cropper',
+  //         ),
+  //         WebUiSettings(
+  //           context: context,
+  //         ),
+  //       ],
+  //     );
+  //     if (croppedFile != null) {
+  //       postImageFile = File(croppedFile.path);
+  //       print("image.path: ${image.path}");
+  //       update([postImageUpdateKey]);
+  //       onInit();
+  //       // await  uploadPostImageToFirebase(context);
+  //     }
+  //   }
+  // }
 
-  pickPostImage(BuildContext context) async {
-    final ImagePicker _picker = ImagePicker();
-    // Pick an image
-    final XFile? image = await _picker.pickImage(
-      source: ImageSource.gallery,
-    );
-    // final XFile? video = await _picker.pickVideo(source: ImageSource.camera);
 
-    if (image != null) {
-      CroppedFile? croppedFile = await ImageCropper().cropImage(
-        sourcePath: image.path,
-        aspectRatioPresets: [
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio16x9
-        ],
-        uiSettings: [
-          AndroidUiSettings(
-              toolbarTitle: 'Cropper',
-              toolbarColor: Colors.deepOrange,
-              toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.original,
-              lockAspectRatio: false),
-          IOSUiSettings(
-            title: 'Cropper',
-          ),
-          WebUiSettings(
-            context: context,
-          ),
-        ],
-      );
-      if (croppedFile != null) {
-        postImageFile = File(croppedFile.path);
-        print("image.path: ${image.path}");
-        update([postImageUpdateKey]);
-        onInit();
-        // await  uploadPostImageToFirebase(context);
-      }
+
+
+  // ignore: unnecessary_overrides
+
+  /// ------------------- Only Image from gallery for uploading image to firestore ------------------- ///
+
+  Future<File?> pickPostImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      return File(pickedFile.path);
+    }
+    return null;
+  }
+
+  Future<String?> uploadImageToFirebase(File imageFile, String userId,) async {
+    try {
+      /// Upload image to Firebase Storage
+      final fileName = imageFile.path;
+      final storageRef = firebase_storage.FirebaseStorage.instance
+          .ref()
+          .child('user_profile_images')
+          .child('$userId/$fileName');
+      final uploadTask = storageRef.putFile(imageFile);
+      final snapshot = await uploadTask.whenComplete(() {});
+      final downloadUrl = await snapshot.ref.getDownloadURL();
+
+      // Store download URL in Firestore
+      final userRef = FirebaseFirestore.instance.collection('post').doc(userId);
+      await userRef.update({'profileImageUrl': downloadUrl});
+
+      return downloadUrl;
+    } catch (e) {
+      print('Error uploading image to Firebase: $e');
+      return null;
     }
   }
 
-  // ignore: unnecessary_overrides
+  /// -------------------------------------------------- ///
   void onInit() {
     super.onInit();
   }
@@ -117,7 +153,8 @@ class CreatePostController extends GetxController {
         required String masjid,
         required String park,
       // required String userimageurl,
-      required String username
+      required String username,
+        required String phone,
       })
   async {
 
@@ -133,21 +170,35 @@ class CreatePostController extends GetxController {
             .ref()
             .child("post")
             .child(UniqueName);
+
     try {
-      // store the file
-      await ref.putFile(postImageFile!);
+   //   store the file
+    await ref.putFile(postImageFile!);
+      /// -------------------- CHAT GPT  ----------------------- ///
+      /// --------------- Different Method -------------------- ///
+      // final storageRef = firebase_storage.FirebaseStorage.instance
+      //     .ref()
+      //     .child('post')
+      //     .child(UniqueName);
+      //
+      // final uploadTask = storageRef.putFile(postImageFile);
+      // final snapshot = await uploadTask.whenComplete(() {});
+      // final downloadUrl = await snapshot.ref.getDownloadURL();
 
       /// Send Image URL to Firestore
-      String imagePostUrl = "";
-      imagePostUrl = await ref.getDownloadURL();
+     String imagePostUrl = "";
+     imagePostUrl = await ref.getDownloadURL();
 
-      if (imagePostUrl != null) {
+     if (imagePostUrl != null) {
         String uid = '';
         //print("uid:$uid");
         if (user != null) {
           uid = user!.uid;
         }
-        print("uid:$uid");
+
+
+
+     //    print("uid:$uid");
         // var format = DateFormat.yMd('ar');
         // var nowdatetime = format.format(DateTime.now());
         String nowdatetime = DateTime.now().microsecondsSinceEpoch.toString();
@@ -170,22 +221,15 @@ class CreatePostController extends GetxController {
           "datetimepost": nowdatetime,
           "username": username,
           "postImageUrl": imagePostUrl,
-          "phoneNo": user?.phoneNumber,
+          "phoneNo": phone,
         };
 
         postReference
             .add(data)
             .then((value) => print("Successfully add to firestore"))
             .onError((error, stacktrace) => print("Error is =  $error"));
-        // try {
-        //   DocumentReference currentPostReference = postReference.doc(uid);
-        //   await currentPostReference.update({"postImageUrl": imagePostUrl});
-        //   return true;
-        // } on Exception catch (e) {
-        //   print("post img error");
-        //   return false;
-        // }
-      }
+
+     }
     } catch (e) {
       print(e);
     }

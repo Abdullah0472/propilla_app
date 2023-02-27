@@ -15,10 +15,14 @@ class UploadPostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> formkeyUpload = GlobalKey();
+    GlobalKey<FormState> formkeyUpload = GlobalKey<FormState>();
+
+    /// Ye Zubair wala Conttoller Ha Just for Testing
     return GetBuilder<CreatePostController>(
       init: CreatePostController(),
       builder: (_) {
+        id:
+        _.postImageUpdateKey;
         return Form(
           key: formkeyUpload,
           child: Scaffold(
@@ -513,33 +517,76 @@ class UploadPostScreen extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  /// Pick 1st Image
+                                  /// Pick 1st Image My CODE
+                                  // GestureDetector(
+                                  //   onTap: () {
+                                  //     _.pickPostImage(context);
+                                  //   },
+                                  //   child: Container(
+                                  //     height: 100,
+                                  //     width: 100,
+                                  //     decoration: BoxDecoration(
+                                  //       color: red,
+                                  //       borderRadius: BorderRadius.circular(20),
+                                  //     ),
+                                  //     child: _.postImageFile != null
+                                  //         ? Image.file(
+                                  //             _.postImageFile!,
+                                  //             fit: BoxFit.cover,
+                                  //           )
+                                  //         : const Center(
+                                  //             child: Icon(
+                                  //               MdiIcons.camera,
+                                  //               size: 35,
+                                  //               color: white,
+                                  //             ),
+                                  //           ),
+                                  //   ),
+                                  // ),
+
+                                  /// ------------- Zubair Code --------------- ///
                                   GestureDetector(
                                     onTap: () {
-                                      _.pickPostImage(context);
+                                      _.pickPostImage();
+                                      FocusScope.of(context).unfocus();
                                     },
                                     child: Container(
-                                      height: 100,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        color: red,
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: _.postImageFile != null
-                                          ? Image.file(
-                                              _.postImageFile!,
-                                              fit: BoxFit.fill,
-                                            )
-                                          : const Center(
-                                              child: Icon(
-                                                MdiIcons.camera,
-                                                size: 35,
-                                                color: white,
+                                        width: 100,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey.shade200,
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(10)),
+                                            border: Border.all(
+                                                color: Colors.cyan, width: 1),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.grey,
+                                                blurRadius: 2.0,
+                                                spreadRadius: 0.5,
                                               ),
-                                            ),
-                                    ),
+                                            ]),
+                                        child: _.postImageFile != null
+                                            ? Image.file(
+                                                _.postImageFile!,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : Center(
+                                                child: IconButton(
+                                                onPressed: () async {
+                                                  await _.pickPostImage();
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                },
+                                                icon: const Center(
+                                                    child: Icon(Icons.image,
+                                                        color: Colors.white,
+                                                        size: 20)),
+                                              ))),
                                   ),
 
+                                  /// ------------------ ///
                                   ImageConatiner(
                                     () {},
                                   ),
@@ -600,11 +647,8 @@ class UploadPostScreen extends StatelessWidget {
                                     market: _.marketTextController.text,
                                     masjid: _.masjidTextController.text,
                                     park: _.parkTextController.text,
-                                    // userimageurl: userdetail.profileImageUrl,
-                                    username: userdetail.metadata.name,
-
-
-                                );
+                                    username: userdetail.firstName,
+                                    phone: userdetail.metadata.phone);
 
                                 Get.to(() => const BottomNavigationBarScreen());
 
@@ -630,7 +674,8 @@ class UploadPostScreen extends StatelessWidget {
                                 }
                                 return darkBlue;
                               }),
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50)),
                               ),

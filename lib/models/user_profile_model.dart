@@ -68,7 +68,7 @@ class Metadata {
     required this.uid,
     // required this.lat,
     // required this.lng,
-     required this.phoneNo,
+     required this.phone,
   });
   late final String name;
   late final String email;
@@ -76,7 +76,7 @@ class Metadata {
   late final String uid;
   // late final String lat;
   // late final String lng;
-  late final String phoneNo;
+  late final String phone;
 
   Metadata.fromJson(Map<String, dynamic> json){
     name = json['name']??"";
@@ -86,7 +86,7 @@ class Metadata {
     // gender = json['gender']??"";
     // lat = json['lat']??"";
     // lng = json['lng']??"";
-    phoneNo = json['phoneNo']??"";
+    phone = json['phone']??"";
   }
 
   Map<String, dynamic> toJson() {
@@ -98,7 +98,7 @@ class Metadata {
     // _data['gender'] = gender;
     // _data['lat'] = lat;
     // _data['lng'] = lng;
-     _data['phoneNo'] = phoneNo;
+     _data['phoneNo'] = phone;
     return _data;
   }
 }

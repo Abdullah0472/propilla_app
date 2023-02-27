@@ -158,15 +158,6 @@ class LoginScreenController extends GetxController {
         urf.update({"firebasetoken": token});
 
         ///
-        //   DocumentReference currentUserReference =
-        //       userReference.doc(currentUser.uid);
-        //   Map<String, dynamic> userProfileScreen = {
-        //     "name": userName,
-        //     "email": email,
-        //     "uid": currentUser.uid,
-        //
-        //   };
-        //   await currentUserReference.set(userProfileScreen);
       }
       status = true;
     } on FirebaseAuthException catch (e) {
@@ -270,46 +261,6 @@ class LoginScreenController extends GetxController {
   }
 
 
-  Future<void> addNewProduct(Map productdata, File image) async {
-    var pathimage = image.toString();
-    var temp = pathimage.lastIndexOf('/');
-    var result = pathimage.substring(temp + 1);
-    print(result);
-    final ref =
-    FirebaseStorage.instance.ref().child('product_images').child(result);
-    var response = await ref.putFile(image);
-    print("Updated $response");
-    var imageUrl = await ref.getDownloadURL();
-
-    try {
-    //  CommanDialog.showLoading();
-      var response = await FirebaseFirestore.instance.collection('productlist').add({
-        'product_name': productdata['p_name'],
-        'product_bed': productdata['p_bed'],
-        'product_bath': productdata['p_bath'],
-        'product_area': productdata['p_area'],
-        'product_info': productdata['p_info'],
-        'product_addrees': productdata['p_address'],
-        'product_hospital': productdata['p_hospital'],
-        'product_school': productdata['p_school'],
-        'product_airport': productdata['p_airport'],
-        'product_market': productdata['p_market'],
-        'product_masjid': productdata['p_masjid'],
-        'product_park': productdata['p_park'],
-        'product_price': productdata['p_price'],
-        "product_upload_date": productdata['p_upload_date'],
-        'product_image': imageUrl,
-        'user_Id': userReference.id,
-        "phone_number": productdata['phone_number'],
-      });
-      print("Firebase response1111 $response");
-   //   CommanDialog.hideLoading();
-      Get.back();
-    } catch (exception) {
-    //  CommanDialog.hideLoading();
-      print("Error Saving Data at firestore $exception");
-    }
-  }
 
 
 }

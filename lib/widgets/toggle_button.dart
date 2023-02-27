@@ -91,7 +91,9 @@ class _ToggleButtonState extends State<ToggleButton> {
                     signInColor = selectedColor;
                     loginColor = normalColor;
                   });
+                  /// This is actual screen in which we will be working and getting the user post properties
                 // Get.to(() => MyPropertyScreen());
+                  /// This is testing screen just to check out the Post Scroller
                   Get.to(() => MyPropertyTestingScreen());
                 },
                 child: Align(
